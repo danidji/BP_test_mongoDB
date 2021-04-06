@@ -22,13 +22,47 @@ const url = 'mongodb://localhost:27017';
 const dbName = 'mesClients';
 // const client = new MongoClient(url);
 // ^--Ajout d'option pour empecher l'erreur----v
-const client = new MongoClient(url, { useUnifiedTopology: true });
+const client = new MongoClient(url, { useUnifiedTopology: true })
 // Use connect method to connect to the server
 client.connect(function (err) {
+
+
+  const db = client.db(dbName);
   assert.strictEqual(null, err);
   console.log('Connected successfully to server');
 
-  const db = client.db(dbName);
+  // insertDocuments(db, client)
+
+  // findData(dbName)
+
+  findDocuments(db)
+
+
+})
+
+//Fonction qui insère des données dans la base
+async function insertDocuments(db, client) {
+  // Get the documents collection
+  const collection = db.collection('mesClients')
+
+  // Insert some documents
+  const result = await collection.insertMany([
+    {
+      "nom": "Test1",
+      "age": 66,
+      "sexe": "h"
+    },
+    {
+      "nom": "Test2",
+      "age": 66,
+      "sexe": "h"
+    }
+  ])
+  client.close()
+
+  return result
+}
+
 // ///test find sans async
 // //Fonction qui retourne les clients ayant +40ans
 // function findData(dbName) {
