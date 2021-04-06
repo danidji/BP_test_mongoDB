@@ -29,6 +29,26 @@ client.connect(function (err) {
   console.log('Connected successfully to server');
 
   const db = client.db(dbName);
+// ///test find sans async
+// //Fonction qui retourne les clients ayant +40ans
+// function findData(dbName) {
+//   const db = client.db(dbName);
 
-  client.close();
-});
+//   //Exemple de requête find() : http://mongodb.github.io/node-mongodb-native/3.6/api/BulkOperationBase.html#find
+
+//   let collection = db.collection('mesClients')
+//   // console.log(collection)
+
+//   //http://mongodb.github.io/node-mongodb-native/3.6/api/Cursor.html#toArray
+//   //                   ^-- Doc toArray() --v
+//   collection.find({ age: { $gt: 40 } }).toArray(function (err, docs) {
+//     if (err) {
+//       console.log(err)
+//       throw err
+//     }
+//     //les données de la requete sont retournées sous forme de tableau dans 'docs'
+//     //            v
+//     console.log(docs)
+//   })
+//   client.close()
+// }
