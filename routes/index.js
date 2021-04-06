@@ -20,6 +20,9 @@ const url = 'mongodb://localhost:27017';
 
 // Database Name
 const dbName = 'mesClients';
+// const client = new MongoClient(url);
+// ^--Ajout d'option pour empecher l'erreur----v
+const client = new MongoClient(url, { useUnifiedTopology: true });
 // Use connect method to connect to the server
 client.connect(function (err) {
   assert.strictEqual(null, err);
