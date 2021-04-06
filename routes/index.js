@@ -52,3 +52,18 @@ client.connect(function (err) {
 //   })
 //   client.close()
 // }
+
+
+
+
+//// Test find() avec async https://www.mongodb.com/what-is-mongodb >> 3 Create a query
+async function findDocuments(db) {
+  const collection = db.collection('mesClients')
+
+  const docs = await collection.find({ age: { $gt: 40 } }).toArray()
+
+  console.log('Found the following records')
+  console.log(docs)
+
+  return docs
+}
