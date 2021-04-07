@@ -19,7 +19,7 @@ router.get('/', function (req, res, next) {
   client.connect(function (err) {
 
     const db = client.db(dbName);
-    assert.strictEqual(null, err);
+    assert.strictEqual(null, err)
     console.log('Connected successfully to server');
 
 
