@@ -40,7 +40,7 @@ const dbFunctions = {
     findDocuments: async function (db) {
         const collection = db.collection('mesClients')
 
-        const docs = await collection.find({ nom: "luffyyy" }).toArray()
+        const docs = await collection.find({}).toArray()
 
         console.log('Found the following records')
         // console.log(docs)
