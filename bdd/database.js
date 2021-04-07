@@ -47,7 +47,7 @@ const dbFunctions = {
 
         return docs
     },
-    updateDocument: async function (db) {
+    updateOneDocument: async function (db) {
         const collection = db.collection('mesClients')
 
         const result = await collection.updateOne(
@@ -75,7 +75,7 @@ const dbFunctions = {
             // this.insertDocument(db)
             // this.insertManyDocuments(db)
             // this.deleteDocuments(db)
-            this.updateDocument(db)
+            this.updateOneDocument(db)
             , this.findDocuments(db)
         ]);
 
