@@ -18,17 +18,18 @@ router.get('/', function (req, res, next) {
   // Use connect method to connect to the server
   client.connect(function (err) {
 
-
     const db = client.db(dbName);
     assert.strictEqual(null, err);
     console.log('Connected successfully to server');
 
+
+    //fonction find de manière asynchrone
     async function asyncCall(db) {
       const data = await dbFunctions.findDocuments(db)
 
       console.log(data)
 
-
+      // envoi des résultatsde la requete au navigateur
       res.render('index', {
         title: 'Test gestion BDD via MongoDB'
         , data: data
@@ -43,31 +44,6 @@ router.get('/', function (req, res, next) {
 });
 
 module.exports = router;
-
-
-// /// Code de la doc à jour : https://www.npmjs.com/package/mongodb
-
-// // Connection URL
-// const url = 'mongodb://localhost:27017';
-
-// // Database Name
-// const dbName = 'mesClients';
-// // const client = new MongoClient(url);
-// // ^--Ajout d'option pour empecher l'erreur----v
-// const client = new MongoClient(url, { useUnifiedTopology: true })
-// // Use connect method to connect to the server
-// client.connect(function (err) {
-
-
-//   const db = client.db(dbName);
-//   assert.strictEqual(null, err);
-//   console.log('Connected successfully to server');
-
-//   dbFunctions.asyncParalel(db, client)
-
-
-// })
-
 
 
 
