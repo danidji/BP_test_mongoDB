@@ -66,10 +66,7 @@ node_module/*
 # Exclude package manager files files
 package-lock.json
 
-# hide css file
+# Exclusion des fichiers .css qui seront charger avec sass
 *.css
-
-# hide map file
-*.map
-
+*.css.map
 
