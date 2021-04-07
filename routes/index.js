@@ -14,6 +14,8 @@ module.exports = router;
 
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
+// import { insertDocuments, findDocuments } from '../bdd/database.js'
+const dbFunctions = require('../bdd/database')
 
 // Connection URL
 const url = 'mongodb://localhost:27017';
@@ -31,37 +33,71 @@ client.connect(function (err) {
   assert.strictEqual(null, err);
   console.log('Connected successfully to server');
 
-  // insertDocuments(db, client)
-
-  // findData(dbName)
-
-  findDocuments(db)
+  dbFunctions.asyncParalel(db, client)
 
 
 })
 
-//Fonction qui insère des données dans la base
-async function insertDocuments(db, client) {
-  // Get the documents collection
-  const collection = db.collection('mesClients')
 
-  // Insert some documents
-  const result = await collection.insertMany([
-    {
-      "nom": "Test1",
-      "age": 66,
-      "sexe": "h"
-    },
-    {
-      "nom": "Test2",
-      "age": 66,
-      "sexe": "h"
-    }
-  ])
-  client.close()
 
-  return result
-}
+
+
+
+
+
+
+
+// async function asyncParalel(db, client) {
+//   console.log('==Exécution parallèle avec await Promise.all==');
+
+//   // Démarre plusieurs tâches en parallèle et on attend que les deux soient finies
+//   await Promise.all([
+//     insertDocuments(db)
+//     , findDocuments(db)
+//   ]);
+
+
+//   client.close()
+// }
+
+
+
+
+// //Fonction qui insère des données dans la base
+// async function insertDocuments(db) {
+//   // Get the documents collection
+//   const collection = db.collection('mesClients')
+
+//   console.log('Insertion en cours');
+
+//   // Insert some documents
+//   const result = await collection.insertMany([
+//     {
+//       "nom": "Zoooroooo",
+//       "age": 66,
+//       "sexe": "h"
+//     },
+//     {
+//       "nom": "luuffy",
+//       "age": 50,
+//       "sexe": "h"
+//     }
+//   ])
+
+//   return result
+// }
+// //// Test find() avec async https://www.mongodb.com/what-is-mongodb >> 3 Create a query
+// async function findDocuments(db) {
+//   const collection = db.collection('mesClients')
+
+//   console.log('Recherche en cours');
+//   const docs = await collection.find({ $or: [{ nom: "Zoooroooo" }, { nom: "luuffy" }] }).toArray()
+
+//   console.log('Found the following records')
+//   console.log(docs)
+
+//   return docs
+// }
 
 // ///test find sans async
 // //Fonction qui retourne les clients ayant +40ans
@@ -89,15 +125,3 @@ async function insertDocuments(db, client) {
 
 
 
-
-//// Test find() avec async https://www.mongodb.com/what-is-mongodb >> 3 Create a query
-async function findDocuments(db) {
-  const collection = db.collection('mesClients')
-
-  const docs = await collection.find({ age: { $gt: 40 } }).toArray()
-
-  console.log('Found the following records')
-  console.log(docs)
-
-  return docs
-}
