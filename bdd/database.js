@@ -1,8 +1,10 @@
 const MongoClient = require('mongodb').MongoClient
 
 const dbFunctions = {
+    COLLECTION: 'users',
+
     insertDocument: async function (db) {
-        const collection = db.collection('mesClients')
+        const collection = db.collection(this.COLLECTION)
 
         // Insert some documents
         const result = await collection.insertOne(
@@ -18,7 +20,7 @@ const dbFunctions = {
     //Fonction qui insère plusieurs données dans la base
     insertManyDocuments: async function (db) {
         // Get the documents collection
-        const collection = db.collection('mesClients')
+        const collection = db.collection(this.COLLECTION)
 
         // Insert some documents
         const result = await collection.insertMany([
@@ -37,10 +39,15 @@ const dbFunctions = {
         return result
     },
     //// Test find() avec async https://www.mongodb.com/what-is-mongodb >> 3 Create a query
-    findDocuments: async function (db) {
-        const collection = db.collection('mesClients')
+    findAllDocuments: async function (db) {
+        const collection = db.collection(this.COLLECTION)
 
-        const docs = await collection.find({}).toArray()
+        const docs = await collection.find({},
+            {
+                projection: {
+                    _id: 0
+                }
+            }).toArray()
 
         console.log('Found the following records')
         // console.log(docs)
@@ -49,7 +56,7 @@ const dbFunctions = {
     },
 
     updateOneDocument: async function (db) {
-        const collection = db.collection('mesClients')
+        const collection = db.collection(this.COLLECTION)
 
         const result = await collection.updateOne(
             { nom: 'Zoooroooo' }
@@ -61,7 +68,7 @@ const dbFunctions = {
     },
 
     deleteDocuments: async function (db) {
-        const collection = db.collection('mesClients')
+        const collection = db.collection(this.COLLECTION)
 
         // DeleteOne est préféré à remove
         const result = await collection.deleteOne({ nom: "Zoooroooo" })
@@ -92,7 +99,7 @@ module.exports = dbFunctions
 
 // //// Test find() avec async https://www.mongodb.com/what-is-mongodb >> 3 Create a query
 // async function findDocuments(db) {
-//   const collection = db.collection('mesClients')
+//   const collection = db.collection(COLLECTION)
 
 //   console.log('Recherche en cours');
 //   const docs = await collection.find({ $or: [{ nom: "Zoooroooo" }, { nom: "luuffy" }] }).toArray()
@@ -110,7 +117,7 @@ module.exports = dbFunctions
 
 //   //Exemple de requête find() : http://mongodb.github.io/node-mongodb-native/3.6/api/BulkOperationBase.html#find
 
-//   let collection = db.collection('mesClients')
+//   let collection = db.collection(COLLECTION)
 //   // console.log(collection)
 
 //   //http://mongodb.github.io/node-mongodb-native/3.6/api/Cursor.html#toArray

@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
   // Connection URL
   const url = 'mongodb://localhost:27017';
   // Database Name
-  const dbName = 'mesClients';
+  const dbName = 'test_mongo';
   // const client = new MongoClient(url);
   // ^--Ajout d'option pour empecher l'erreur----v
   const client = new MongoClient(url, { useUnifiedTopology: true })
@@ -25,9 +25,9 @@ router.get('/', function (req, res, next) {
 
     //fonction find de manière asynchrone
     async function asyncCall(db) {
-      const data = await dbFunctions.findDocuments(db)
+      const data = await dbFunctions.findAllDocuments(db)
 
-      console.log(data)
+      // console.log(data)
 
       // envoi des résultatsde la requete au navigateur
       res.render('index', {
