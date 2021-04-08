@@ -1,22 +1,19 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container
+    p Voici les données test de ma base :
 
-
-  p Voici les données de ma base :
-
-  table 
-    thead 
-      tr 
-        //- Pour chaque clé de la première instance des données, on récupère le nom des clé pour l'en tête du tableau
-        each val, key in data[0]
-          th= key
-    tbody 
-      //-  Pour chaque utilisateur enregistré dans la base...
-      each user in data
+    table 
+      thead 
         tr 
-          //- on affiche sur chaque ligne les données contenues dans la base
-          each val in user 
-            td= val
+          //- Pour chaque clé de la première instance des données, on récupère le nom des clé pour l'en tête du tableau
+          each val, key in data[0]
+            th= key
+      tbody 
+        //-  Pour chaque utilisateur enregistré dans la base...
+        each user in data
+          tr 
+            //- on affiche sur chaque ligne les données contenues dans la base
+            each val in user 
+              td= val
