@@ -8,6 +8,7 @@ var favicon = require('serve-favicon')
 
 var indexRouter = require('./routes/index.js');
 var usersRouter = require('./routes/users');
+let addUserRouter = require('./routes/addUser')
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/addUser', addUserRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

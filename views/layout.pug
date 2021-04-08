@@ -10,7 +10,7 @@ html
         nav 
           .title #{title} 
           ul
-            each val in [{lien:'/',text:'Accueil'},{lien:'#',text:'Ajout utilisateur'}]
+            each val in [{lien:'/',text:'Accueil'},{lien:'/addUser',text:'Ajout utilisateur'}]
               li
                 a(href=val.lien) #{val.text}
 
