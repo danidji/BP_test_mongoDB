@@ -1,6 +1,95 @@
+$colorOne: #5e96ff
+$colorTwo: #002365
+$colorThree: #F2F2F2
+$fontFamily: sans-serif
+
+//Mixin
+=getSize($width,$height)
+  width: $width
+  height: $height
+
+=getPadding($rightLeft,$topBottom)
+  padding-left: $rightLeft
+  padding-right: $rightLeft
+  padding-top: $topBottom
+  padding-bottom: $topBottom
+
+=getMargin($rightLeft,$topBottom)
+  margin-left: $rightLeft
+  margin-right: $rightLeft
+  margin-top: $topBottom
+  margin-bottom: $topBottom
+=getBorder()
+  border: 5px $colorOne solid
+  box-shadow: 5px 5px 10px $colorTwo
+  border-radius: 10px
+
 body
   padding: 50px
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+  font: 18px $fontFamily
+
+  nav
+  +getPadding(0,5px)
+  background-color: $colorThree
+  box-shadow: 5px 5px 10px $colorOne
+  border-radius: 0px 0px 10px 10px
+
+  .title
+    text-align: center
+    color: $colorTwo
+    font-size: 3rem
+    font-style: italic
+    font-weight: bold
+    margin-top: 15px
+  ul
+    text-align: center
+    padding: 0
+  li
+    +getMargin(0px,5px)
+    font-size: 1.5em
+    font-weight: bold
+    list-style-type: none
+    a
+      color: $colorTwo
+      +getPadding(0px,5px)
+      display: block
+
+      &:hover
+        color: $colorTwo
+        background-color: $colorOne
+
+      &:visited
+        color: $colorTwo
+
+.container
+  @include getPadding(50px,30px)
 
 a
-  color: #00B7FF
+  color: #colorTwo
+  text-decoration: none
+
+h1
+  color: $colorTwo
+  font-family: $fontFamily
+  text-align: center
+
+p
+  color: $colorTwo
+  font-family: $fontFamily
+
+table
+  border-collapse: collapse
+
+td, th
+  border: 1px solid $colorTwo
+  padding: .5rem
+
+@media screen and (min-width: 768px)
+  nav
+    ul
+      display: flex
+      justify-content: space-around
+
+      a
+        +getPadding(50px,5px)
+        @include getBorder()
