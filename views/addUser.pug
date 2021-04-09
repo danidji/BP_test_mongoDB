@@ -3,23 +3,52 @@ extends layout
 block content
 
 		.container 
-			p #{title}
+			h3 Inscrivez vous avec votre adresse mail :
 
-			form(action="#", method="post") 
-				label(for="nom") Entrez votre nom :
+			//-on peut se passer de la méthod quand on est en full JS
+			form 
+				label(for="email") Adresse E-mail :
 					input(
-						type="text"
-						, name="nom"
-						, id="nom"
+						type="email"
+						, name="email"
+						,id="email"
+						,required
 						)
-				label(for="prenom") Entrez votre prénom : 
+				label(for="pass") mot de passe :
+					input(
+						type="password"
+						, name="pass"
+						,id="pass"
+						,minLength="6"
+						,required
+						)
+				label(for="prenom") prénom : 
 					input(
 						type="text"
 						, name="prenom"
 						, id="prenom"
 						)
-				label(for="tel") Entrez votre prénom : 
+				label(for="nom") Nom de famille :
 					input(
-						type="tel", name="")
+						type="text"
+						, name="nom"
+						, id="nom"
+						)
+				label(for="phone") Téléphone : 
+					input(
+						type="tel"
+						, name="phone"
+						, id= "phone"
+						)
+				label(for="birth") Date de naissance : 
+					input(
+						type="date"
+						, name="birth"
+						, id= "birth"
+						,min='4/09/1950'
+						,max='4/09/2000'
+						)
+				input(type="submit",id='check' value="Inscrivez vous")
+				
+
 			
-//- FInir le formulaire
