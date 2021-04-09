@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
   // Connection URL
   const url = 'mongodb://localhost:27017';
   // Database Name
-  const dbName = 'test_mongo';
+  const dbName = 'DB_users';
   // const client = new MongoClient(url);
   // ^--Ajout d'option pour empecher l'erreur----v
   const client = new MongoClient(url, { useUnifiedTopology: true })
