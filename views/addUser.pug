@@ -6,7 +6,7 @@ block content
 			h3 Inscrivez vous avec votre adresse mail :
 
 			//-on peut se passer de la méthod quand on est en full JS => (action="#", method="post")
-			form.form
+			form.form(action="/addUser", method="post") 
 				.input.mail
 					label(for="email") Adresse E-mail :
 					input(
