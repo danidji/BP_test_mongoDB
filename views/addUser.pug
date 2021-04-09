@@ -5,8 +5,8 @@ block content
 		.container 
 			h3 Inscrivez vous avec votre adresse mail :
 
-			//-on peut se passer de la méthod quand on est en full JS
-			form 
+			//-on peut se passer de la méthod quand on est en full JS => (action="#", method="post")
+			form.form
 				.input.mail
 					label(for="email") Adresse E-mail :
 					input(
@@ -57,5 +57,6 @@ block content
 				.checked
 					input(type="submit",class='inputForm check' value="Inscrivez vous")
 				
+		//-Attention le dossier public est la racine, pas besoin de mettre ../public
+		script(src="/javascripts/form.js") 
 
-			
