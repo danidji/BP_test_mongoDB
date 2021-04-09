@@ -64,12 +64,13 @@ body
 
 .container
   @include getPadding(50px,0px)
+  margin-bottom: 50px
 
 a
   color: #colorTwo
   text-decoration: none
 
-h1
+h1,h3
   color: $colorTwo
   font-family: $fontFamily
   text-align: center
@@ -84,6 +85,22 @@ table
 td, th
   border: 1px solid $colorTwo
   padding: .5rem
+
+form
+  display: flex
+  flex-direction: column
+  div
+    margin: auto
+    display: flex
+    flex-direction: column
+    @include getPadding(0,10px)
+    @include getSize(50%,70px)
+    max-width: 50%
+    label
+      text-transform: uppercase
+    .inputForm
+      @include getSize(100%,50px)
+      font-size: 1.5rem
 
 @media screen and (min-width: 768px)
   nav
