@@ -14,11 +14,13 @@ const checkButton = document.querySelector(".check")
 // console.log(allInput)
 // JE rajoute un écouteur sur la validation
 
+
+// /!\ Attention lors de l'appelle d'une fonction dans un event, on ne peut pas utiliser de paramètre ni retourner de valeur 
+// On passe donc par la fonction onclick qui appellera elle même la fonction qui retournera des valeurs (returnValues)
 form.addEventListener('submit', onclick)
 
 
 
-// module.exports = newUser
 
 //Quand je valide je récupère la veleur contenur dans les éléments dans un objet que je pourrais exporter
 function returnValues() {
@@ -34,12 +36,13 @@ function returnValues() {
 
     }
 
-    console.log(myValues)
+    // console.log(myValues)
     return myValues
 }
 
 function onclick(e) {
     e.preventDefault()
     const newUser = returnValues()
-    console.log(newUser)
+    // console.log(newUser)
 }
+// module.exports = newUser
